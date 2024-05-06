@@ -15,7 +15,7 @@ class monitor;
     forever
       begin
         @ (intf.out)
-      //if (intf.rd_en == 1)
+        if (intf.out != 0)
         begin
         sb_value = sb.store.pop_back();
           if( sb_value != intf.out) begin // Get expected value from scoreboard and compare with DUT output
