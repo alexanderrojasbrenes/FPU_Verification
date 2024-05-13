@@ -9,19 +9,16 @@ class driver;
     this.sb = sb;
   endfunction
         
-  task reset();  // Reset method
+  task reset(); // Reset method
     $display("Executing reset\n");
     @ (posedge intf.clk);
-    //intf.out = 0;
     intf.opa = 0;
     intf.opb = 0;
     intf.rmode = 0;
     intf.fpu_op = 0;
   endtask
   
-  task addition(input integer iteration);
-    repeat(iteration)
-    begin
+  task addition();
       sti = new();
       @ (posedge intf.clk); // sincronizacion, no es un  "always"
       if(sti.randomize()) // Generate stimulus Se pone 'if' por que el randomize puede fallar si tiene constraints que no cumple
@@ -37,14 +34,9 @@ class driver;
         intf.opb = sti.valueB;
       
       sb.store.push_front($shortrealtobits($bitstoshortreal(sti.valueA) + $bitstoshortreal(sti.valueB))); // Se guarda floatA + floatB en sb, pero en su representacion de IEEE 754
-    end
   endtask
   
-  
-  task substraction(input integer iteration);
-    
-    repeat(iteration)
-    begin
+  task substraction();
       sti = new();
       @ (posedge intf.clk); 
       if(sti.randomize()) 
@@ -60,14 +52,9 @@ class driver;
         intf.opa = sti.valueA; 
         intf.opb = sti.valueB; 
         sb.store.push_front($shortrealtobits($bitstoshortreal(sti.valueA) - $bitstoshortreal(sti.valueB)));
-    end
   endtask
   
-  
-  task multiplication(input integer iteration);
-    
-    repeat(iteration)
-    begin
+  task multiplication();
       sti = new();
       @ (posedge intf.clk); 
       if(sti.randomize()) 
@@ -83,13 +70,9 @@ class driver;
         intf.opa = sti.valueA; 
         intf.opb = sti.valueB; 
         sb.store.push_front($shortrealtobits($bitstoshortreal(sti.valueA) * $bitstoshortreal(sti.valueB)));
-    end
   endtask
       
-  task division(input integer iteration);
-      
-      repeat(iteration) 
-      begin
+  task division();
         sti = new();
         @ (posedge intf.clk); 
         if(sti.randomize()) 
@@ -105,7 +88,6 @@ class driver;
         intf.opa = sti.valueA; 
         intf.opb = sti.valueB; 
         sb.store.push_front($shortrealtobits($bitstoshortreal(sti.valueA) / $bitstoshortreal(sti.valueB)));
-      end
   endtask
 
 endclass
