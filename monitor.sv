@@ -24,22 +24,22 @@ class monitor;
           scbd_flag = 0;
         end
         
-        else if (scbd_flag == 0)
-        begin
-        	sb_value = sb.store.pop_back();
-          	if (sb_value != intf.out) // Get expected value from scoreboard and compare with DUT output
-            begin 
-              $display("* ERROR * DUT data is %h :: SB data is %h ", intf.out ,sb_value );
-              $display("* ERROR * DUT data is %f :: SB data is %f ", $bitstoshortreal(intf.out), $bitstoshortreal(sb_value));
-              err_count++;
-          	end
-        
-            else 
-              begin
-                $display("* PASS * DUT data is %h :: SB data is %h ", intf.out ,sb_value );
-                $display("* PASS * DUT data is %f :: SB data is %f ", $bitstoshortreal(intf.out), $bitstoshortreal(sb_value));
-              end
-        end
+      else if (scbd_flag == 0)
+      begin
+        sb_value = sb.store.pop_back();
+          if (sb_value != intf.out) // Get expected value from scoreboard and compare with DUT output
+          begin 
+            $display("* ERROR * DUT data is %h :: SB data is %h ", intf.out ,sb_value );
+            $display("* ERROR * DUT data is %f :: SB data is %f ", $bitstoshortreal(intf.out), $bitstoshortreal(sb_value));
+            err_count++;
+          end
+      
+          else 
+          begin
+            $display("* PASS * DUT data is %h :: SB data is %h ", intf.out ,sb_value );
+            $display("* PASS * DUT data is %f :: SB data is %f ", $bitstoshortreal(intf.out), $bitstoshortreal(sb_value));
+          end
+      end
      end
   endtask
 endclass
