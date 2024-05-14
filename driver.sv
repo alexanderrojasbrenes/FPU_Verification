@@ -128,4 +128,34 @@ class driver;
           end            
         end
   endtask 
+
+  task extreme_cases(input integer op, input logic valueA, input logic valueB);
+      sti = new();
+      @ (posedge intf.clk); 
+      if(sti.randomize()) 
+        if(op == 0) // suma
+          begin
+            addition();
+            #sti.random_delay;
+          end
+            
+      else if(op == 1) // resta
+            begin
+              substraction(); 
+              #sti.random_delay;
+            end
+            
+      else if(op == 2) // multiplicación
+            begin
+              multiplication(); 
+              #sti.random_delay;
+            end
+            
+      else if(op == 3) // división
+            begin
+              division(); 
+          #sti.random_delay;
+        end
+      
+endtask 
 endclass
