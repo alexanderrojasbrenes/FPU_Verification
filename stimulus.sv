@@ -9,6 +9,10 @@ class stimulus;
   rand logic[31:0]  valueA;
   rand logic[31:0]  valueB;
   
+  logic[31:0] p_inf = 32'h7F800000;
+  logic[31:0] n_inf = 32'hff800000;
+  logic[31:0] zero = 32'h00000000;
+  
   constraint cst_valueA {valueA[30:23] < 137; valueA[30:23] > 133;}
   constraint cst_valueB {valueB[30:23] < 137; valueB[30:23] > 133;}
   
