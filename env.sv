@@ -12,7 +12,6 @@ class environment;
     mntr = new(intf,sb);
     fork 
       mntr.check(); // task de chequeo activo durante toda la prueba
-      				// por eso el fork
     join_none
   endfunction
            
