@@ -1,11 +1,14 @@
-module top();
+import uvm_pkg::*;
+
+module top_hdl();
   reg clk = 0;
   initial // clock generator
   forever #5 clk = ~clk;
    
   // Interface
-  intf_cnt intf(clk);
-
+  arb_intf intf(clk);
+  
+  // DUT connection
   fpu uut(.clk(clk), 
           .rmode      (intf.rmode), 
           .fpu_op     (intf.fpu_op),
@@ -20,11 +23,15 @@ module top();
           .underflow  (intf.underflow),
           .zero       (intf.zero),
           .div_by_zero(intf.div_by_zero));
+  
+  //ARBITER instance goes here
 
-  initial begin
-    $dumpfile("verilog.vcd");
-    $dumpvars(0);
-  end
-
-  testcase test(intf);
+initial begin
+  $dumpfile("dump.vcd"); 
+  $dumpvars;
+   
+  uvm_config_db #(virtual arb_intf)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE", intf);
+  	
+end
+  
 endmodule
