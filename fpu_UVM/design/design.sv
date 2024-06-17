@@ -1,0 +1,7 @@
+`include "top_hdl.sv"
+`include "fpu.v"
+`include "except.v"
+`include "post_norm.v"
+`include "pre_norm.v"
+`include "pre_norm_fmul.v"
+`include "primitives.v"

@@ -1,0 +1,18 @@
+---
+# Note: The contents of this file are automatically generated.
+# Any changes made by hand may be overwritten.
+version: '0.2'
+work_dir: .
+design_root_dir: ..\..
+simulations:
+  - name: Sim1
+    options: '-top work.top_hvl -L dut -uvm 1.2 +acc+b -sv_seed random -waves waves.mxd'
+source_files:
+  - language: verilog
+    path: filelist_V.txt
+    library_name: dut
+    file_list: relative-to-file
+  - language: verilog
+    path: ..\testbench\top_hvl.sv
+library_search_paths:
+  - $STD_LIBS\ieee93
