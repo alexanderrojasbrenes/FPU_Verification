@@ -1,4 +1,4 @@
-interface arb_intf(input clk);
+interface fpu_intf(input clk);
   
   logic [1:0]	rmode;
   logic [2:0]	fpu_op;

@@ -6,17 +6,15 @@ class test_basic extends uvm_test; // se corren desde la linea de comandos
     super.new (name, parent);
   endfunction : new
   
-  
-  virtual arb_intf intf;
+  virtual fpu_intf intf;
   fpu_env env;  
 
-  
   // build fase
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
       
    	// se revisa que la interfase está disponible
-    if(uvm_config_db #(virtual arb_intf)::get(this, "", "VIRTUAL_INTERFACE", intf) == 0)  
+    if(uvm_config_db #(virtual fpu_intf)::get(this, "", "VIRTUAL_INTERFACE", intf) == 0)  
       begin
         `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the TB")
       end
@@ -24,7 +22,7 @@ class test_basic extends uvm_test; // se corren desde la linea de comandos
     env  = fpu_env::type_id::create ("env", this);
     
     // se setea la interfase para todo lo que sea top para abajo (utilizando el asterisco)
-    uvm_config_db #(virtual arb_intf)::set (null, "uvm_test_top.*", "VIRTUAL_INTERFACE", intf); 
+    uvm_config_db #(virtual fpu_intf)::set (null, "uvm_test_top.*", "VIRTUAL_INTERFACE", intf); 
   endfunction
   
   
@@ -47,7 +45,7 @@ class test_basic extends uvm_test; // se corren desde la linea de comandos
     seq = gen_item_seq::type_id::create("seq");
     
     seq.randomize();
-    seq.start(env.fpu_ag_active.arb_seqr);
+    seq.start(env.fpu_ag_active.fpu_seqr);
     
     phase.drop_objection (this);
   endtask

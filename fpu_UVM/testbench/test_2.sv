@@ -14,49 +14,57 @@ class test_basic2 extends test_basic;
     super.build_phase(phase);
     
     //factory to override 'base_agent' by 'child_agent' by name
-    factory.set_type_override_by_name("arb_item", "arb_item2");
+    factory.set_type_override_by_name("gen_item_seq", "gen_item_seq2");
 
     // Print factory configuration
     factory.print();
   endfunction
 endclass
 
-
-// Sequence Item 
-class arb_item2 extends uvm_sequence_item;
-  rand integer random_delay;
-  rand logic[1:0] operation;
-  //rand logic[1:0] rmode_at;
-  
-  logic[31:0]  valueA;
-  logic[31:0]  valueB;
-  
-  rand logic[31:0]  vA;
-  rand logic[31:0]  vB;
-  
-  logic[31:0] p_inf = 32'h7F800000;
-  logic[31:0] n_inf = 32'hff800000;
-  logic[31:0] zero = 32'h00000000;
-  
-  constraint distribution {
-    vA dist {p_inf :/ 90,  vA :/ 10};
-  };
-  
-  logic[31:0]  out_at;	//FIXME: Crear sequence item solo para la salida  
-  
-  //constraint cst_valueA {vA[30:23] < 137; vA[30:23] > 133;}
-  constraint cst_valueB {vB[30:23] < 137; vB[30:23] > 133;}
-
-  constraint cst_random_delay {random_delay < 12; random_delay > 4;}
-  
-  `uvm_object_utils_begin(arb_item2)
-  	`uvm_field_int (vA, UVM_DEFAULT)
-    `uvm_field_int (vB, UVM_DEFAULT)
-    `uvm_field_int (random_delay, UVM_DEFAULT)
-  	`uvm_field_int(operation, UVM_DEFAULT)
-  `uvm_object_utils_end
- 
-  function new(string name = "arb_item2");
+// Generador de secuencias
+class gen_item_seq2 extends gen_item_seq;
+  `uvm_object_utils(gen_item_seq2)
+  function new(string name="gen_item_seq2");
     super.new(name);
   endfunction
+
+  virtual task body();   
+    fpu_item f_item = fpu_item::type_id::create("f_item"); // se crea el item desde la fábrica
+    
+    // Caso 1: inf + inf = inf
+    start_item(f_item);
+    f_item.randomize() with {f_item.operation == 0; f_item.valueA2 == 32'h7F800000; f_item.valueB2 == 32'h7F800000;};
+    f_item.valueA = f_item.valueA2; 
+    f_item.valueB = f_item.valueB2;
+    `uvm_info("SEQ", $sformatf("\n\n\nGenerate new item: "), UVM_LOW)
+    f_item.print();
+    finish_item(f_item);
+   
+    // Caso 2: -inf - inf = -inf
+    start_item(f_item);
+    f_item.randomize() with {f_item.operation == 1; f_item.valueA2 == 32'hff800000; f_item.valueB2 == 32'h7F800000;}; 
+    f_item.valueA = f_item.valueA2; 
+    f_item.valueB = f_item.valueB2;
+    `uvm_info("SEQ", $sformatf("\n\n\nGenerate new item: "), UVM_LOW)
+    f_item.print();
+    finish_item(f_item);
+   
+    // Caso 3: n / [+-]inf = [+-]zero
+    start_item(f_item);
+    f_item.randomize() with {f_item.operation == 3; f_item.valueB2 == 32'h7F800000;}; 
+    f_item.valueB = f_item.valueB2;
+    `uvm_info("SEQ", $sformatf("\n\n\nGenerate new item: "), UVM_LOW)
+    f_item.print();
+    finish_item(f_item);
+    
+    // Caso 4: [+-]n x inf = [+-] inf
+    start_item(f_item);
+    f_item.randomize() with {f_item.operation == 2; f_item.valueB2 == 32'hff800000;}; 
+    f_item.valueB = f_item.valueB2;
+    `uvm_info("SEQ", $sformatf("\n\n\nGenerate new item: "), UVM_LOW)
+    f_item.print();
+    finish_item(f_item);
+    
+    `uvm_info("SEQ", $sformatf("Done generation of %0d items", num), UVM_LOW)
+  endtask
 endclass

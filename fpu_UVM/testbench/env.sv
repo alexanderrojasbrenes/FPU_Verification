@@ -6,7 +6,7 @@ class fpu_env extends uvm_env;
     super.new (name, parent);
   endfunction
   
-  virtual arb_intf intf;
+  virtual fpu_intf intf;
   
   // Se definen los agentes
   fpu_agent_active fpu_ag_active; 
@@ -18,7 +18,7 @@ class fpu_env extends uvm_env;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     
-    if(uvm_config_db #(virtual arb_intf)::get(this, "", "VIRTUAL_INTERFACE", intf) == 0) begin
+    if(uvm_config_db #(virtual fpu_intf)::get(this, "", "VIRTUAL_INTERFACE", intf) == 0) begin
       `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the TB")
     end
     
@@ -29,7 +29,6 @@ class fpu_env extends uvm_env;
       
     uvm_report_info(get_full_name(),"End_of_build_phase", UVM_LOW);
     print();
-
   endfunction
 
   virtual function void connect_phase(uvm_phase phase);
