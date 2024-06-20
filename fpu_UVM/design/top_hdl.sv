@@ -1,5 +1,6 @@
-`include "uvm_macros.svh"
 import uvm_pkg::*;
+
+`include "uvm_macros.svh"
 
 module top_hdl();
   reg clk = 0;

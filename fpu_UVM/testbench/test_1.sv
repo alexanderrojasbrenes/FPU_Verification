@@ -1,7 +1,8 @@
+
 class test_basic extends uvm_test; // se corren desde la linea de comandos
 
   `uvm_component_utils(test_basic) // pone el test en la fábrica
- 
+  
   function new (string name="test_basic", uvm_component parent=null); // constructor 
     super.new (name, parent);
   endfunction : new

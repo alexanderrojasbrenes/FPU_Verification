@@ -14,4 +14,4 @@
 ../testbench/testbench.sv
 
 -uvm 1.2
-+UVM_TESTNAME=test_1
++UVM_TESTNAME=test_basic
