@@ -9,8 +9,8 @@ class fpu_scoreboard extends uvm_scoreboard;
 	endfunction
   
 	// puertos de acceso al scoreboard de tipo 
-  	uvm_analysis_imp_drv #(arb_item, fpu_scoreboard) fpu_drv;
-  	uvm_analysis_imp_mon #(arb_item, fpu_scoreboard) fpu_mon;
+  	uvm_analysis_imp_drv #(fpu_item, fpu_scoreboard) fpu_drv;
+  	uvm_analysis_imp_mon #(fpu_item, fpu_scoreboard) fpu_mon;
   
 	// modelo de referencia de la fpu
   	logic [31:0] ref_model [$];  
@@ -22,7 +22,7 @@ class fpu_scoreboard extends uvm_scoreboard;
   
 	//push
     // Recibe la información generada en el Driver y se encarga de predecir el valor de la operación
-  	virtual function void write_drv (arb_item item);
+  	virtual function void write_drv (fpu_item item);
       case (item.operation)
         0: 
           item.out_at = $shortrealtobits($bitstoshortreal(item.valueA) + $bitstoshortreal(item.valueB)); 
@@ -39,7 +39,7 @@ class fpu_scoreboard extends uvm_scoreboard;
 	endfunction
   
   	// Revisa el valor obtenido en el DUT con el del modelo de referencia 
-    virtual function void write_mon (arb_item item);
+    virtual function void write_mon (fpu_item item);
       `uvm_info ("sb", $sformatf("Data received = 0x%0h", item.out_at), UVM_LOW)
     
       if (item.out_at !== ref_model.pop_front()) begin

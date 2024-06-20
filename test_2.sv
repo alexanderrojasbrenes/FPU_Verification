@@ -29,7 +29,7 @@ class gen_item_seq2 extends gen_item_seq;
   endfunction
 
   virtual task body();   
-    arb_item f_item = arb_item::type_id::create("f_item"); // se crea el item desde la fábrica
+    fpu_item f_item = fpu_item::type_id::create("f_item"); // se crea el item desde la fábrica
     
     // Caso 1: inf + inf = inf
     start_item(f_item);

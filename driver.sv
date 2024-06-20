@@ -1,5 +1,5 @@
 // Sequence Item 
-class arb_item extends uvm_sequence_item;
+class fpu_item extends uvm_sequence_item;
   rand integer random_delay;
   rand logic[1:0] operation;
   
@@ -20,7 +20,7 @@ class arb_item extends uvm_sequence_item;
 
   constraint cst_random_delay {random_delay < 12; random_delay > 4;}
   
-  `uvm_object_utils_begin(arb_item)
+  `uvm_object_utils_begin(fpu_item)
   	`uvm_field_int (valueA, UVM_DEFAULT)
     `uvm_field_int (valueB, UVM_DEFAULT)
   	`uvm_field_int (valueA2, UVM_DEFAULT)
@@ -29,7 +29,7 @@ class arb_item extends uvm_sequence_item;
   	`uvm_field_int (operation, UVM_DEFAULT)
   `uvm_object_utils_end
 
-  function new(string name = "arb_item");
+  function new(string name = "fpu_item");
     super.new(name);
   endfunction
 endclass
@@ -46,7 +46,7 @@ class gen_item_seq extends uvm_sequence;
   constraint c1 { num inside {[10:20]}; } // numero de iteraciones
 
   virtual task body();
-    arb_item f_item = arb_item::type_id::create("f_item"); // se crea el item desde la fábrica
+    fpu_item f_item = fpu_item::type_id::create("f_item"); // se crea el item desde la fábrica
     for (int i = 0; i < num; i ++) begin
         start_item(f_item);
       
@@ -63,18 +63,18 @@ endclass
 
 
 // Driver 
-class arb_driver extends uvm_driver #(arb_item); // se especifica eñ tipo de item que puede manejar
+class fpu_driver extends uvm_driver #(fpu_item); // se especifica eñ tipo de item que puede manejar
 
-  `uvm_component_utils (arb_driver) // se mete la en fábrica
-  function new (string name = "arb_driver", uvm_component parent = null);
+  `uvm_component_utils (fpu_driver) // se mete la en fábrica
+  function new (string name = "fpu_driver", uvm_component parent = null);
     super.new (name, parent);
   endfunction
 
-  virtual arb_intf intf;
+  virtual fpu_intf intf;
 
   virtual function void build_phase (uvm_phase phase);
     super.build_phase (phase);
-    if(uvm_config_db #(virtual arb_intf)::get(this, "", "VIRTUAL_INTERFACE", intf) == 0) begin
+    if(uvm_config_db #(virtual fpu_intf)::get(this, "", "VIRTUAL_INTERFACE", intf) == 0) begin
       `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the TB")
     end
   endfunction
@@ -87,7 +87,7 @@ class arb_driver extends uvm_driver #(arb_item); // se especifica eñ tipo de it
     super.run_phase(phase);
     
     forever begin
-      arb_item f_item;
+      fpu_item f_item;
       
       `uvm_info("DRV", $sformatf("Wait for item from sequencer"), UVM_LOW)
       
@@ -112,7 +112,7 @@ class arb_driver extends uvm_driver #(arb_item); // se especifica eñ tipo de it
   endtask
 
 
-  task addition(arb_item f_item);
+  task addition(fpu_item f_item);
     @(posedge intf.clk); 
     intf.rmode = 0;
     intf.fpu_op = 0;
@@ -121,7 +121,7 @@ class arb_driver extends uvm_driver #(arb_item); // se especifica eñ tipo de it
   endtask
 
 
-  task substraction(arb_item f_item);
+  task substraction(fpu_item f_item);
     @(posedge intf.clk); 
     intf.rmode = 0;
     intf.fpu_op = 1;
@@ -130,7 +130,7 @@ class arb_driver extends uvm_driver #(arb_item); // se especifica eñ tipo de it
   endtask
 
 
-  task multiplication(arb_item f_item);
+  task multiplication(fpu_item f_item);
     @(posedge intf.clk); 
     intf.rmode = 0;
     intf.fpu_op = 2;
@@ -139,7 +139,7 @@ class arb_driver extends uvm_driver #(arb_item); // se especifica eñ tipo de it
   endtask  
 
 
-  task division(arb_item f_item);
+  task division(fpu_item f_item);
     @ (posedge intf.clk); 
     intf.rmode = 0;
     intf.fpu_op = 3;
@@ -148,7 +148,7 @@ class arb_driver extends uvm_driver #(arb_item); // se especifica eñ tipo de it
   endtask
 
 
-  task drive_fpu(arb_item f_item);
+  task drive_fpu(fpu_item f_item);
     @ (posedge intf.clk);
     case (f_item.operation)
       0: addition(f_item);
