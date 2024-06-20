@@ -1,5 +1,5 @@
-=N:[UVMSource] Using sources from 'C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2'
-=N:[UsageMeter (2024-06-17 16:52:58 Central America Standard Time)] usage server initial connection
+=N:[UVMSource] Using sources from 'C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2'
+=N:[UsageMeter (2024-06-17 20:17:49 Central America Standard Time)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -11,18 +11,18 @@ Elaborating...
 =W:[IneffectiveDynamicCast]:
     The following dynamic $cast cases will always be false    
 
-    C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_callback.svh:521:9              class uvm_pkg::uvm_callbacks#(class uvm_pkg::uvm_phase,class uvm_pkg::uvm_phase_cb)    class uvm_pkg::uvm_callbacks#(class uvm_pkg::uvm_phase,class uvm_pkg::uvm_callback)    
-    Included from C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_base.svh:76:12                                                                                                                                                                                  
-    Included from C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\uvm_pkg.sv:31:12                                                                                                                                                                                         
+    C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_callback.svh:521:9              class uvm_pkg::uvm_callbacks#(class uvm_pkg::uvm_phase,class uvm_pkg::uvm_phase_cb)    class uvm_pkg::uvm_callbacks#(class uvm_pkg::uvm_phase,class uvm_pkg::uvm_callback)    
+    Included from C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_base.svh:76:12                                                                                                                                                                                  
+    Included from C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\uvm_pkg.sv:31:12                                                                                                                                                                                         
 
-    C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_callback.svh:671:12             class uvm_pkg::uvm_phase                                                               class uvm_pkg::uvm_report_object                                                       
-    Included from C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_base.svh:76:12                                                                                                                                                                                  
+    C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_callback.svh:671:12             class uvm_pkg::uvm_phase                                                               class uvm_pkg::uvm_report_object                                                       
+    Included from C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_base.svh:76:12                                                                                                                                                                                  
 
-    C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_callback.svh:731:10             class uvm_pkg::uvm_component                                                           class uvm_pkg::uvm_phase                                                               
-    Included from C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_base.svh:76:12                                                                                                                                                                                  
+    C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_callback.svh:731:10             class uvm_pkg::uvm_component                                                           class uvm_pkg::uvm_phase                                                               
+    Included from C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_base.svh:76:12                                                                                                                                                                                  
 
-    C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_callback.svh:808:10             class uvm_pkg::uvm_component                                                           class uvm_pkg::uvm_phase                                                               
-    Included from C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_base.svh:76:12                                                                                                                                                                                  
+    C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_callback.svh:808:10             class uvm_pkg::uvm_component                                                           class uvm_pkg::uvm_phase                                                               
+    Included from C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_base.svh:76:12                                                                                                                                                                                  
 
   Found 4 unique specialization(s) of 4 design element(s).
 Optimizing...
@@ -30,10 +30,10 @@ Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ns.
 Linking image.so...
-=N:[RootSeed] Using random seed cdfb0e4c3f5008f6048d20fbabf0baafa1bc4a08736415a7ec56fea35bd0d56e.
+=N:[RootSeed] Using random seed 3002a37a426f7d870aac42d7a7134121b7a0937012bb81f966887cefc4f0e9f1.
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
-UVM_INFO C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
+UVM_INFO C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
 ----------------------------------------------------------------
 UVM-1.2
 (C) 2007-2014 Mentor Graphics Corporation
@@ -58,22 +58,24 @@ UVM-1.2
 =N:[dumpMXD] preparing MXD dump to 'waves.mxd'.
 =N:[dump] Dump started at time 0
 =N:Starting event scheduler...
-UVM_FATAL @ 0: reporter [NOCOMP] No components instantiated. You must either instantiate at least one component before calling run_test or use run_test to do so. To run a test using run_test, use +UVM_TESTNAME or supply the test name in the argument to run_test(). Exiting simulation.
-UVM_INFO C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_report_server.svh(847) @ 0: reporter [UVM/REPORT/SERVER] 
+UVM_WARNING @ 0: reporter [BDTYP] Cannot create a component of type 'test_basic' because it is not registered with the factory.
+UVM_FATAL @ 0: reporter [INVTST] Requested test from command line +UVM_TESTNAME=test_basic not found.
+UVM_INFO C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_report_server.svh(847) @ 0: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
 UVM_INFO :    1
-UVM_WARNING :    0
+UVM_WARNING :    1
 UVM_ERROR :    0
 UVM_FATAL :    1
 ** Report counts by id
-[NOCOMP]     1
+[BDTYP]     1
+[INVTST]     1
 [UVM/RELNOTES]     1
 
 =N:[dumpMXD] closing MXD dump
-=T:Simulation terminated by $finish at time 0 (C:\Users\delga\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_root.svh:135);
-Run directory: C:\Users\delga\OneDrive\Documentos\Verificacion\fpu_UVM\sim
+=T:Simulation terminated by $finish at time 0 (C:\Users\avarg\AppData\Local\metrics-ca\dsim\20240422.0.0\uvm\1.2\src\base\uvm_root.svh:135);
+Run directory: C:\Users\avarg\OneDrive\Escritorio\Andres\Semestre Actual\Verificación de Diseño de Circuitos Integrados\FPU_Verification\fpu_UVM\sim
   System timescale is 1ns / 1ns
   Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:msys2_)
-  Random seed: cdfb0e4c3f5008f6048d20fbabf0baafa1bc4a08736415a7ec56fea35bd0d56e
+  Random seed: 3002a37a426f7d870aac42d7a7134121b7a0937012bb81f966887cefc4f0e9f1
